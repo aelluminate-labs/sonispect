@@ -4,7 +4,18 @@ Classify 10 music genres. Extract Mel Frequency Cepstral Coefficients for featur
 
 ## About the Dataset
 
-The GTZAN dataset consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format. The dataset is preprocessed by segmenting the audio signals into 3-second clips.
+The GTZAN genre collection dataset was collected in 2000-2001. It consists of 1000 audio files each having 30 seconds duration. There are 10 classes ( 10 music genres) each containing 100 audio tracks. Each track is in .wav format. It contains audio files of the following 10 genres:
+
+- Blues
+- Classical 
+- Country 
+- Disco 
+- Hiphop 
+- Jazz
+- Metal 
+- Pop 
+- Reggae 
+- Rock
 
 ### Content
 
