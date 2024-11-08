@@ -7,7 +7,7 @@ dataset = []
 
 def load_dataset(filename, split, tr_set, ts_set):
     # :: Open the file in binary mode
-    with open("feature.bat", "rb") as f:
+    with open(filename, "rb") as f:
         while True:
             try:
                 # :: Load the serialized data form the file adn append to the dataset
