@@ -13,10 +13,10 @@ from src.models.knn.get_accuracy import get_accuracy
 directory = "data/raw/sound_clips/"
 
 # :: Check if the file exists, if not create it
-if not os.path.exists("models/feature.bat"):
-    open("models/feature.bat", "w").close()
+if not os.path.exists("models/genre_pretrained_model.bat"):
+    open("models/genre_pretrained_model.bat", "w").close()
 
-f = open("models/feature.bat", "wb")
+f = open("models/genre_pretrained_model.bat", "wb")
 i = 0
 
 for folder in os.listdir(directory):
@@ -48,7 +48,7 @@ test_set = []
 
 
 # :: Load the dataset and split it into training and test sets
-load_dataset("models/feature.bat", 0.66, training_set, test_set)
+load_dataset("models/genre_pretrained_model.bat", 0.66, training_set, test_set)
 
 # :: Print the number of instances in the training and test sets
 print("\nTRAINED: " + repr(len(training_set)) + " instances")
