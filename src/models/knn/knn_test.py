@@ -6,11 +6,11 @@ import pickle
 import operator
 from collections import defaultdict
 
-# Load the dataset from the pre-trained model
+# :: Load the dataset from the pre-trained model
 dataset = []
 
 
-def loadDataset(filename):
+def load_dataset(filename):
     with open(filename, "rb") as f:
         while True:
             try:
@@ -20,10 +20,10 @@ def loadDataset(filename):
                 break
 
 
-loadDataset("models/genre_pretrained_model.bat")
+load_dataset("models/genre_pretrained_model.bat")
 
 
-# Define the distance function
+# :: Define the distance function
 def distance(instance1, instance2, k):
     distance = 0
     mm1 = instance1[0]
@@ -37,8 +37,8 @@ def distance(instance1, instance2, k):
     return distance
 
 
-# Define the function to get neighbors
-def getNeighbors(trainingSet, instance, k):
+# :: Define the function to get neighbors
+def get_neighbors(trainingSet, instance, k):
     distances = []
     for x in range(len(trainingSet)):
         dist = distance(trainingSet[x], instance, k) + distance(
@@ -52,8 +52,8 @@ def getNeighbors(trainingSet, instance, k):
     return neighbors
 
 
-# Define the function to get the nearest class
-def nearestClass(neighbors):
+# :: Define the function to get the nearest class
+def nearest_class(neighbors):
     classVote = {}
     for x in range(len(neighbors)):
         response = neighbors[x]
@@ -80,7 +80,7 @@ mean_matrix = mfcc_feat.mean(0)
 feature = (mean_matrix, covariance, 0)
 
 # Predict the genre of the new audio file
-pred = nearestClass(getNeighbors(dataset, feature, 5))
+pred = nearest_class(get_neighbors(dataset, feature, 5))
 
 # Print the predicted genre
 print(f"Predicted Genre: {results[pred]}")
