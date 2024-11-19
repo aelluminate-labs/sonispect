@@ -1,25 +1,26 @@
 import pickle
-import random
-
-# :: Initialize an empty list to store the dataset
-dataset = []
+import numpy as np
 
 
-def load_dataset(filename, split, tr_set, ts_set):
-    # :: Open the file in binary mode
-    with open(filename, "rb") as f:
+def load_dataset(input_file):
+    """
+    Load the dataset from the specified file.
+
+    :param input_file: Path to the file containing the features.
+    :return: Tuple containing features and labels.
+    """
+    features = []
+    labels = []
+
+    with open(input_file, "rb") as f:
         while True:
             try:
-                # :: Load the serialized data form the file adn append to the dataset
-                dataset.append(pickle.load(f))
+                feature = pickle.load(f)
+                features.append(feature[0])
+                labels.append(feature[2])
             except EOFError:
-                # :: Close the file when the en of the file is reached
-                f.close()
                 break
-    # :: Iterate over each item in the dataset
-    for x in range(len(dataset)):
-        # Randomly decide whether to add the item to the training set or the test set
-        if random.random() < split:
-            tr_set.append(dataset[x])
-        else:
-            ts_set.append(dataset[x])
+
+    features = np.array(features)
+    labels = np.array(labels) - 1
+    return features, labels
