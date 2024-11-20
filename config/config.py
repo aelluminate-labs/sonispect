@@ -1,20 +1,24 @@
 class Config:
-    # Shared configurations
+    # :: Shared configurations
+    GENRE_DIR = "data/genre/"
     DATA_DIR = "data/raw/sound_clips/"
+    TEST_DIR = "data/"
     TRAIN_SPLIT = 0.66
     WINDOW_LENGTH = 0.020
 
-    # KNN-specific configurations
+    # :: KNN-specific configurations
+    MODEL_SAVE_PATH_KNN = "models/trained/knn_model.pkl"
     FEATURES_FILE_KNN = "models/knn_model.pkl"
     K_NEIGHBORS = 5
 
-    # SVM-specific configurations
+    # :: SVM-specific configurations
     FEATURES_FILE_SVM = "models/svm_model.pkl"
-    SVM_KERNEL = "rbf"  # Options: 'linear', 'poly', 'rbf', 'sigmoid'
+    SVM_KERNEL = "rbf"
     SVM_C = 1.0
     SVM_GAMMA = "scale"
 
-    # NN-specific configurations
+    # :: NN-specific configurations
+    MODEL_SAVE_PATH_NN = "models/trained/nn_model.h5"
     FEATURES_FILE_NN = "models/nn_model.pkl"
     TRAIN_SPLIT_NN = 0.8
     NN_EPOCHS = 50
