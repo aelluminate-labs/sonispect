@@ -1,25 +1,25 @@
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Input
-from tensorflow.keras.optimizers import Adam
 from typing import List
+import tensorflow as tf
+from tensorflow import keras
+from keras import models, layers, optimizers
+
 
 class NeuralNetwork:
     def __init__(self, input_dim: int, num_classes: int, hidden_units: List[int], learning_rate: float):
-        self.model = Sequential()
+        self.model = models.Sequential()
         
         # Input layer
-        self.model.add(Input(shape=(input_dim,)))
+        self.model.add(layers.Input(shape=(input_dim,)))
         
         # Hidden layers
         for units in hidden_units:
-            self.model.add(Dense(units, activation='relu'))
+            self.model.add(layers.Dense(units, activation='relu'))
         
         # Output layer
-        self.model.add(Dense(num_classes, activation='softmax'))
+        self.model.add(layers.Dense(num_classes, activation='softmax'))
         
         # Compile the model
-        self.model.compile(optimizer=Adam(learning_rate=learning_rate),
+        self.model.compile(optimizer=optimizers.Adam(learning_rate=learning_rate),
                            loss='sparse_categorical_crossentropy',
                            metrics=['accuracy'])
 

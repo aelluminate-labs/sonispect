@@ -8,11 +8,11 @@ def main():
     # Initialize feature extractor and extract features
     print("Extracting features...")
     extractor = FeatureExtractor(window_length=Config.WINDOW_LENGTH)
-    extractor.process_directory(Config.DATA_DIR, Config.FEATURES_FILE_SVM)
+    extractor.process_directory(Config.DATA_DIR, Config.FEATURES_FILE_SVM, model_type="svm")
     
     # Load and split dataset
     print("Loading dataset...")
-    training_set, test_set = DataLoader.load_dataset(Config.FEATURES_FILE_SVM, Config.TRAIN_SPLIT)
+    training_set, test_set = DataLoader.load_dataset(Config.FEATURES_FILE_SVM, Config.TRAIN_SPLIT, model_type="svm")
     
     # Train SVM model and make predictions
     print("Training SVM model and making predictions...")

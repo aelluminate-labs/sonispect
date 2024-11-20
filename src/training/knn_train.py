@@ -8,11 +8,11 @@ def main():
     # Initialize feature extractor and extract features
     print("Extracting features...")
     extractor = FeatureExtractor(window_length=Config.WINDOW_LENGTH)
-    extractor.process_directory(Config.DATA_DIR, Config.FEATURES_FILE_KNN)
+    extractor.process_directory(Config.DATA_DIR, Config.FEATURES_FILE_KNN, model_type="knn")
     
     # Load and split dataset
     print("Loading dataset...")
-    training_set, test_set = DataLoader.load_dataset(Config.FEATURES_FILE, Config.TRAIN_SPLIT)
+    training_set, test_set = DataLoader.load_dataset(Config.FEATURES_FILE_KNN, Config.TRAIN_SPLIT, model_type="knn")
     
     # Train model and make predictions
     print("Training model and making predictions...")
