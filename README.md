@@ -25,8 +25,9 @@ The GTZAN genre collection dataset was collected in 2000-2001. It consists of 10
 
 ## Model Performance
 
-| Model | Version | Performance | File | Configurations |
-| --- | --- | --- | --- | --- |
-| **KNN** | **v1** | **70.27% Accuracy** | **[knn_train.py](/src/training/knn_train.py)** | `TRAIN_SPLIT=0.66`, `WINDOW_LENGHT=0.022`, `K_NEIGHBORS=5` |
-| SVM (multi-class) | v1 | 58.24% Accuracy | [svm_train.py](/src/training/svm_train.py) | `SVM_KERNEL="rbf`, `SVM_C=1.0`, `SVM_GAMMA="scale"`, `TRAIN_SPLIT=0.66`, `WINDOW_LENGTH=0.020` |
-| NN | v1 | 56.28% Accuracy <br />  4.1078 Loss  | [nn_train.py](/src/training/nn_train.py) | `TRAIN_SPLIT_NN=0.8`, `NN_EPOCHS=50`, `NN_BATCH_SIZE=32`, `NN_LEARNING_RATE=0.001`, `NN_HIDDEN_UNITS=[128, 64]`, `NUM_CLASSES=10` |
+| Model | Version | Performance | File | Configurations | Remarks | 
+| --- | --- | --- | --- | --- | --- |
+| **KNN** | **v1** | **70.91% Accuracy** | **[knn_train.py](/src/training/knn_train.py)** | `TRAIN_SPLIT=0.66`, `WINDOW_LENGHT=0.022`, `K_NEIGHBORS=5` | - |
+| SVM (multi-class) | v1 | 58.24% Accuracy | [svm_train.py](/src/training/svm_train.py) | `SVM_KERNEL="rbf`, `SVM_C=1.0`, `SVM_GAMMA="scale"`, `TRAIN_SPLIT=0.66`, `WINDOW_LENGTH=0.020` | - |
+| NN | v1 | 56.28% Accuracy <br />  4.1078 Loss  | [nn_train.py](/src/training/nn_train.py) | `TRAIN_SPLIT_NN=0.8`, `NN_EPOCHS=50`, `NN_BATCH_SIZE=32`, `NN_LEARNING_RATE=0.001`, `NN_HIDDEN_UNITS=[128, 64]`, `NUM_CLASSES=10` | - |
+| **NN** | **v2** | **70.41% Accuracy <br /> 1.6374 Loss** | - | - | **Added Dropout, Batch Normalization, and Early Stopping** |
