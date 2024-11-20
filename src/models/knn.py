@@ -9,9 +9,7 @@ class KNNClassifier:
 
     def _distance(self, instance1: Tuple[np.ndarray, np.ndarray], 
                 instance2: Tuple[np.ndarray, np.ndarray]) -> float:
-        """
-        Calculate distance between two instances.
-        """
+        # :: Calculate distance between two instances.
         mm1, cm1 = instance1
         mm2, cm2 = instance2
         
@@ -22,9 +20,7 @@ class KNNClassifier:
         return distance
 
     def _get_neighbors(self, instance: Tuple) -> List:
-        """
-        Find k nearest neighbors for an instance.
-        """
+        # :: Find k nearest neighbors for an instance.
         distances = []
         for x in range(len(self.training_data)):
             dist = self._distance((self.training_data[x][0], self.training_data[x][1]), 
@@ -37,28 +33,21 @@ class KNNClassifier:
         return [distances[x][0] for x in range(self.k)]
 
     def fit(self, training_data: List[Tuple]):
-        """
-        Train the classifier.
-        """
+        # :: Train the classifier.
+        
         self.training_data = training_data
 
     def predict(self, instances: List[Tuple]) -> List:
-        """
-        Predict classes for multiple instances.
-        """
+        # :: Predict classes for multiple instances.
         return [self.predict_single(instance) for instance in instances]
 
     def predict_single(self, instance: Tuple) -> Any:
-        """
-        Predict class for a single instance.
-        """
+        # :: Predict class for a single instance.
         neighbors = self._get_neighbors(instance)
         return self._nearest_class(neighbors)
 
     def _nearest_class(self, neighbors: List) -> Any:
-        """
-        Determine most common class among neighbors.
-        """
+        # :: Determine most common class among neighbors.
         class_vote = {}
         for response in neighbors:
             class_vote[response] = class_vote.get(response, 0) + 1

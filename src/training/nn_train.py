@@ -1,4 +1,6 @@
 import numpy as np
+import json
+import os
 from src.utils.data_loader import DataLoader
 from src.features.extractor import FeatureExtractor
 from src.models.nn import NeuralNetwork
@@ -39,6 +41,12 @@ def main():
     print("Evaluating the model...")
     loss, accuracy = nn.evaluate(X_test, y_test)
     print(f"Test Loss: {loss:.4f}, Test Accuracy: {accuracy * 100:.2f}%")
+
+    # :: Save the trained model
+    print("Saving the model...")
+    nn.model.save(Config.MODEL_SAVE_PATH_NN)
+    print(f"Model saved at {Config.MODEL_SAVE_PATH_NN}")
+
 
 if __name__ == "__main__":
     main()

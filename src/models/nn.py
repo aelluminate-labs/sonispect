@@ -1,19 +1,19 @@
 from typing import List
-import tensorflow as tf
-from tensorflow import keras
-from keras import models, layers, optimizers
+from keras import models, layers, optimizers, callbacks, regularizers
 
 
 class NeuralNetwork:
-    def __init__(self, input_dim: int, num_classes: int, hidden_units: List[int], learning_rate: float):
+    def __init__(self, input_dim: int, num_classes: int, hidden_units: List[int], learning_rate: float, dropout_rate: float = 0.2, l2_lamda: float = 0.1):
         self.model = models.Sequential()
         
-        # Input layer
+        # :: Input layer
         self.model.add(layers.Input(shape=(input_dim,)))
         
         # Hidden layers
         for units in hidden_units:
-            self.model.add(layers.Dense(units, activation='relu'))
+            self.model.add(layers.Dense(units, activation='relu', kernel_regularizer=regularizers.l2(l2_lamda)))
+            self.model.add(layers.BatchNormalization())
+            self.model.add(layers.Dropout(dropout_rate))
         
         # Output layer
         self.model.add(layers.Dense(num_classes, activation='softmax'))
@@ -24,7 +24,9 @@ class NeuralNetwork:
                            metrics=['accuracy'])
 
     def fit(self, X_train, y_train, epochs: int, batch_size: int, validation_data=None):
-        return self.model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=validation_data)
+        early_stopping = callbacks.EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
+        reduce_lr = callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=1e-5)
+        return self.model.fit(X_train, y_train, epochs=epochs, batch_size=batch_size, validation_data=validation_data, callbacks=[early_stopping, reduce_lr])
 
     def predict(self, X_test):
         return self.model.predict(X_test)
