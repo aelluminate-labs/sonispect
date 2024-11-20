@@ -27,7 +27,5 @@ The GTZAN genre collection dataset was collected in 2000-2001. It consists of 10
 
 | Model | Version | Accuracy | Remarks |
 | --- | --- | --- | --- |
-| KNN | v1 | 🔻54.85% | - |
-| SVM | v1 | 🔻60.00% | - |
-| Xgboost | v1 | 🔻54.24% | - | 
-| Xgboost | v2 (Feature Engineering + Hyperparameter) | 🔺60.61% | Used `logfbank` from `python_speech_features` for feature extraction. | 
+| KNN | v1 | 🔺67.13% | - |
+| SVM (multi-class) | v1 | 🔻63.43% | - |
